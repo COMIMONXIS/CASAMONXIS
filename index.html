@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASAMONXIS | DROP #001 - L'AFTER</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,19 +19,19 @@
                     },
                     colors: {
                         'neon-orange': '#ff3b00',
-                        'neon-yellow': '#ffb800',
-                        'dark-bg': '#0a0a0a',
+                        'dark-bg': '#050505',
                     }
                 }
             }
         }
     </script>
+    
     <style>
         body {
-            background-color: #0a0a0a;
+            background-color: #050505;
             color: white;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, #151515 0%, #050505 100%);
+            background-image: radial-gradient(circle at 50% 0%, #151515 0%, #000000 100%);
         }
 
         /* Soroll de fons urbà */
@@ -39,27 +40,13 @@
             top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none;
             z-index: 50;
-            opacity: 0.04;
-            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+            opacity: 0.05;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
         }
 
-        .glitch-hover:hover {
-            animation: glitch-anim 0.3s linear infinite;
-            color: #ff3b00;
-        }
-        
-        @keyframes glitch-anim {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) text-shadow: -2px 0 red, 2px 0 cyan; }
-            40% { transform: translate(-2px, -2px) text-shadow: 2px 0 red, -2px 0 cyan; }
-            60% { transform: translate(2px, 2px) text-shadow: -2px 0 red, 2px 0 cyan; }
-            80% { transform: translate(2px, -2px) text-shadow: 2px 0 red, -2px 0 cyan; }
-            100% { transform: translate(0) }
-        }
-
-        /* CONTENIDOR SCROLL BIKINI */
-        #scroll-sandwich-section {
-            height: 250vh; /* Donem espai per fer scroll */
+        /* Contenidor de l'animació Scroll 3D */
+        #scroll-section {
+            height: 300vh; /* Donem espai per fer l'scroll */
             position: relative;
         }
         
@@ -71,127 +58,121 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            perspective: 2000px; /* Profunditat 3D */
         }
 
+        /* Embolcall del bikini sencer */
         .bikini-wrapper {
-            perspective: 1500px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .bikini-3d {
             position: relative;
-            width: 260px;
-            height: 260px;
+            width: 60vw;
+            max-width: 280px;
+            aspect-ratio: 1; /* Quadrat */
             transform-style: preserve-3d;
-            /* Inclinació base per veure-ho en 3D */
-            transform: rotateX(65deg) rotateZ(-40deg); 
-            transition: transform 0.1s ease-out;
+            /* Inclinació isomètrica per veure-ho en perspectiva 3D */
+            transform: rotateX(60deg) rotateZ(-40deg);
+            will-change: transform;
         }
 
+        /* Textures Realistes i Volum de les Capes */
         .layer {
             position: absolute;
             width: 100%;
             height: 100%;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
             transform-style: preserve-3d;
-            transition: box-shadow 0.3s ease;
+            will-change: transform;
+            transition: filter 0.3s ease;
             cursor: pointer;
         }
+        
+        .layer:hover {
+            filter: brightness(1.2);
+        }
 
-        /* 1. Pa de dalt (Realista) */
+        /* 1. Pa de Brioix Torrat (Dalt) */
         .bread-top {
-            background: linear-gradient(135deg, #e3a046, #b06214);
-            border-radius: 30px;
-            border: 2px solid #8c500b;
-            /* Efecte volum pa torrat */
-            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.5), inset 5px 5px 15px rgba(255,255,255,0.4), 10px 10px 20px rgba(0,0,0,0.7);
+            background-image: url('https://images.unsplash.com/photo-1589367920969-ab8e050bf352?auto=format&fit=crop&w=600&q=80');
+            /* Multi-ombra per crear gruix visual en 3D (Extrusió CSS) */
+            box-shadow: 
+                -1px 1px 0 #3a2210, -2px 2px 0 #3a2210, -3px 3px 0 #3a2210, 
+                -4px 4px 0 #2c1a0c, -5px 5px 0 #2c1a0c, -6px 6px 15px rgba(0,0,0,0.8);
             z-index: 4;
-            /* Inici (Tancat) */
-            transform: translateZ(2px);
-            will-change: transform;
-        }
-        /* Marques de planxa al pa */
-        .bread-top::after {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            border-radius: 30px;
-            background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 45px);
+            transform: translateZ(5px);
         }
 
-        /* 2. Formatge fos */
+        /* 2. Formatge Fos Trufat */
         .cheese {
-            background: linear-gradient(135deg, #ffd900, #ffaa00);
+            background-image: url('https://images.unsplash.com/photo-1618164421422-92a2a0d911b3?auto=format&fit=crop&w=600&q=80');
+            /* El formatge sobresurt una mica i regalima */
+            transform: scale(1.08) translateZ(0px);
             border-radius: 20px;
-            /* Vores del formatge sobresortint */
-            transform: scale(1.08) translateZ(0px); 
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.7), inset 2px 2px 10px rgba(255,255,255,0.6);
+            box-shadow: 
+                -1px 1px 0 #d49800, -2px 2px 0 #a67600, 
+                -3px 3px 20px rgba(255, 187, 0, 0.6);
             z-index: 3;
-            will-change: transform;
-        }
-        /* Trossets de tòfona negra */
-        .cheese::before {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            background-image: radial-gradient(circle, #1a1a1a 2px, transparent 2px), radial-gradient(circle, #2a2a2a 1px, transparent 1px);
-            background-size: 30px 30px, 15px 15px;
-            background-position: 0 0, 10px 10px;
-            opacity: 0.6;
+            mix-blend-mode: hard-light;
         }
 
-        /* 3. Pernil dolç rostit */
+        /* 3. Pernil Ibèric */
         .ham {
-            background: #d96c6c;
-            border-radius: 25px;
-            /* Textura carn */
-            background-image: repeating-linear-gradient(135deg, transparent, transparent 5px, rgba(0,0,0,0.08) 5px, rgba(0,0,0,0.08) 10px);
-            border: 2px solid #a64242;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            background-image: url('https://images.unsplash.com/photo-1628151015968-3a4429e9ef04?auto=format&fit=crop&w=600&q=80');
+            box-shadow: 
+                -1px 1px 0 #4a1515, -2px 2px 0 #4a1515, 
+                -3px 3px 10px rgba(0,0,0,0.7);
             z-index: 2;
-            transform: translateZ(-2px);
-            will-change: transform;
+            transform: translateZ(-5px) scale(0.95);
         }
 
-        /* 4. Pa de baix */
+        /* 4. Pa de Brioix (Base) */
         .bread-bottom {
-            background: linear-gradient(135deg, #c27c22, #8c4b0b);
-            border-radius: 25px;
-            border: 2px solid #5c3003;
-            box-shadow: inset 5px 5px 15px rgba(0,0,0,0.5), 15px 15px 40px rgba(0,0,0,0.9);
+            background-image: url('https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=600&q=80');
+            box-shadow: 
+                -1px 1px 0 #3a2210, -2px 2px 0 #3a2210, -3px 3px 0 #3a2210, 
+                -4px 4px 0 #2c1a0c, -5px 5px 0 #2c1a0c, -6px 6px 30px rgba(0,0,0,0.9);
             z-index: 1;
-            transform: translateZ(-4px);
-            will-change: transform;
+            transform: translateZ(-10px);
         }
 
-        /* TOOLTIP PER ALS INGREDIENTS */
-        #ingredient-tooltip {
+        /* Tooltip Flotant / Fixe per a mòbils */
+        #ingredient-label {
             position: absolute;
+            bottom: 15%;
             left: 50%;
-            top: 50%;
-            transform: translate(120px, -50%);
+            transform: translateX(-50%) translateY(20px);
             background: #ff3b00;
             color: black;
             font-family: 'Anton', sans-serif;
             font-size: 1.5rem;
-            padding: 10px 20px;
+            padding: 10px 24px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             white-space: nowrap;
-            z-index: 50;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
+            z-index: 100;
             border: 2px solid white;
+            box-shadow: 5px 5px 0px rgba(255,255,255,0.3);
         }
         
-        .layer:hover {
-            box-shadow: 0 0 30px rgba(255, 59, 0, 0.8) !important;
+        #ingredient-label.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        /* MARQUEE ANIMATION */
+        .glitch-hover:hover {
+            animation: glitch-anim 0.3s linear infinite;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0); text-shadow: none; }
+            20% { transform: translate(-2px, 2px); text-shadow: 2px 0 #ff3b00; }
+            40% { transform: translate(-2px, -2px); text-shadow: -2px 0 white; }
+            60% { transform: translate(2px, 2px); text-shadow: 2px 0 #ff3b00; }
+            80% { transform: translate(2px, -2px); text-shadow: -2px 0 white; }
+            100% { transform: translate(0); text-shadow: none; }
+        }
+
         .marquee-container {
             overflow: hidden;
             white-space: nowrap;
@@ -201,12 +182,12 @@
             transform: rotate(-2deg) scale(1.05);
             position: relative;
             z-index: 10;
-            border-top: 3px solid white;
-            border-bottom: 3px solid white;
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
         }
         .marquee-content {
             display: inline-block;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
             letter-spacing: 2px;
@@ -217,143 +198,140 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(25, 25, 25, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        /* Ocultar scrollbar per una millor estètica */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff3b00; }
     </style>
 </head>
 <body class="antialiased selection:bg-neon-orange selection:text-black">
     <div class="noise"></div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-40 top-0 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center glass-card border-x-0 border-t-0 rounded-none bg-black/80">
+    <nav class="fixed w-full z-40 top-0 py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center bg-black/90 backdrop-blur-sm border-b border-gray-900">
         <div class="font-display text-4xl tracking-wider text-white glitch-hover cursor-pointer mb-2 md:mb-0">CASAMONXIS<span class="text-neon-orange">.</span></div>
-        
-        <div class="text-gray-400 font-display tracking-widest text-lg md:text-xl border border-gray-700 px-4 py-1 rounded bg-black mb-2 md:mb-0">
-            DROP 001 - <span class="text-neon-orange">25 OCT 2026 | 03:00 AM</span>
+        <div class="text-white font-display tracking-widest text-lg md:text-xl border border-gray-700 px-5 py-1 bg-black">
+            DROP 001 <span class="text-gray-500 mx-2">|</span> <span class="text-neon-orange">DIVENDRES 24, 03:00 AM</span>
         </div>
-
-        <a href="#licitar" class="bg-neon-orange text-black font-display tracking-widest px-8 py-2 uppercase hover:bg-white transition-colors duration-300 transform hover:scale-105 border-2 border-transparent hover:border-black shadow-[4px_4px_0px_white]">
-            Licitar
-        </a>
     </nav>
 
-    <!-- HERO SECTION (Indicador de Scroll) -->
-    <section class="min-h-screen pt-40 pb-20 flex flex-col items-center justify-center relative px-4 z-10">
+    <!-- HERO SECTION -->
+    <section class="min-h-screen pt-32 pb-10 flex flex-col items-center justify-center relative px-4 z-10">
         <div class="text-center max-w-5xl mx-auto">
-            <p class="font-display text-neon-orange text-2xl mb-2 tracking-[0.3em] uppercase glitch-hover">
-                /// Drop #001 ///
-            </p>
-            <h1 class="font-display text-7xl md:text-[10rem] leading-[0.8] tracking-tight uppercase mb-8 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                L'AFTER <br/><span class="text-transparent bg-clip-text bg-gradient-to-b from-gray-300 to-gray-700">CLANDESTÍ</span>
+            <h1 class="font-display text-7xl md:text-[10rem] leading-[0.8] tracking-tight uppercase mb-6 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                L'AFTER <br/><span class="text-transparent bg-clip-text bg-gradient-to-br from-gray-400 to-gray-800">CLANDESTÍ</span>
             </h1>
             <p class="font-body text-gray-400 text-lg md:text-xl uppercase tracking-widest mb-16 font-bold">
-                No és un sopar. És el resopó VIP.
+                No és un sopar. És el resopó VIP a casa nostra.
             </p>
 
-            <div class="animate-bounce flex flex-col items-center gap-2 text-neon-orange mt-12">
-                <span class="font-display tracking-widest">FES SCROLL PER DESCOBRIR EL MENÚ</span>
+            <div class="animate-bounce flex flex-col items-center gap-3 text-neon-orange mt-12">
+                <span class="font-display tracking-widest text-xl">FES SCROLL PER DESCOBRIR EL MENÚ</span>
                 <i class="fa-solid fa-arrow-down text-4xl"></i>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓ BIKINI 3D AMB SCROLL -->
-    <section id="scroll-sandwich-section">
+    <!-- 3D SCROLL SANDWICH SECTION -->
+    <section id="scroll-section">
         <div class="sticky-container">
-            <div class="text-center absolute top-24 z-20 w-full px-4">
-                <h2 class="font-display text-6xl md:text-8xl text-white opacity-20 uppercase tracking-widest">Bikini Trufat</h2>
+            <!-- Títol de fons difuminat -->
+            <div class="absolute w-full text-center top-32 px-4 pointer-events-none">
+                <h2 class="font-display text-6xl md:text-8xl text-white opacity-[0.03] uppercase tracking-widest w-full">Bikini Trufat</h2>
             </div>
             
-            <div class="bikini-wrapper">
-                <div class="bikini-3d" id="sandwich-core">
-                    <!-- Ingredients interactius -->
-                    <div class="layer bread-top" id="layer-top" data-text="Brioix artesanal torrat"></div>
-                    <div class="layer cheese" id="layer-cheese" data-text="Formatge trufat fos"></div>
-                    <div class="layer ham" id="layer-ham" data-text="Pernil dolç rostit"></div>
-                    <div class="layer bread-bottom" id="layer-bottom" data-text="Brioix artesanal torrat"></div>
-                </div>
-                
-                <!-- Tooltip flotant -->
-                <div id="ingredient-tooltip">Exemple text</div>
+            <div class="bikini-wrapper" id="bikini-3d">
+                <div class="layer bread-top" id="layer-top" data-label="Pa de brioix artesanal cuit en llenya"></div>
+                <div class="layer cheese" id="layer-cheese" data-label="Formatge trufat madurat desfet"></div>
+                <div class="layer ham" id="layer-ham" data-label="Pernil ibèric de gla tallat a mà"></div>
+                <div class="layer bread-bottom" id="layer-bottom" data-label="Base de brioix xopada en mantega"></div>
             </div>
+            
+            <!-- Etiqueta interactiva (Tooltip) -->
+            <div id="ingredient-label">Ingredient</div>
         </div>
     </section>
 
     <!-- MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-content">
-            DROP #001 // L'AFTER // BIKINI TRUFAT // NOMÉS 1 GUANYADOR + 2 ACOMPANYANTS // CASAMONXIS // DROP #001 // L'AFTER // BIKINI TRUFAT // NOMÉS 1 GUANYADOR + 2 ACOMPANYANTS //
+            DROP #001 // L'AFTER // BIKINI TRUFAT // 1 GUANYADOR + 2 ACOMPANYANTS // EXPERIÈNCIA VIP // CASAMONXIS // DROP #001 // L'AFTER // BIKINI TRUFAT // 1 GUANYADOR + 2 ACOMPANYANTS // 
         </div>
     </div>
 
     <!-- INFO SECTION -->
     <section id="info" class="py-24 px-6 md:px-12 max-w-6xl mx-auto relative z-10">
-        <h2 class="font-display text-5xl md:text-7xl mb-16 text-center uppercase">Com Funciona <span class="text-neon-orange border-b-4 border-neon-orange">L'After</span></h2>
+        <h2 class="font-display text-5xl md:text-7xl mb-16 text-center uppercase">Com Funciona <span class="text-neon-orange border-b-4 border-neon-orange">La Nit</span></h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 hover:border-neon-orange transition-colors duration-300">
-                <i class="fa-solid fa-burger text-4xl text-neon-orange mb-6"></i>
-                <h3 class="font-display text-3xl mb-4">MUNCHIES DE LUXE</h3>
-                <p class="font-body text-gray-400">Arribes de festa amb gana? T'esperem a les 03:00 AM amb un Bikini Trufat d'autor, cerveses fredes i la millor música urbana. Ressopó elevat a nivell Déu.</p>
+            <div class="glass-card p-8 rounded-xl hover:border-neon-orange transition-colors duration-300">
+                <i class="fa-solid fa-fire-burner text-4xl text-neon-orange mb-6"></i>
+                <h3 class="font-display text-3xl mb-4">MONXIS DE LUXE</h3>
+                <p class="font-body text-gray-400">Arribes de festa destrossat? T'esperem a les 03:00 AM amb un Bikini Trufat d'alta cuina, beure fred i música urbana. Resopó nivell Déu.</p>
             </div>
             
-            <div class="glass-card p-8 hover:border-white transition-colors duration-300 border border-neon-orange bg-neon-orange/5">
-                <i class="fa-solid fa-users text-4xl text-white mb-6"></i>
-                <h3 class="font-display text-3xl mb-4">1 GUANYADOR + 2</h3>
-                <p class="font-body text-gray-300 font-bold">L'exclusivitat és màxima. Només la persona que faci la puja més alta s'emporta la taula. Aquest guanyador pot portar a 2 amics o amigues gratis.</p>
+            <div class="glass-card p-8 rounded-xl border border-neon-orange bg-neon-orange/5 transform md:-translate-y-4 shadow-[0_0_30px_rgba(255,59,0,0.1)]">
+                <i class="fa-solid fa-crown text-4xl text-white mb-6"></i>
+                <h3 class="font-display text-3xl mb-4 text-white">1 GUANYADOR + 2</h3>
+                <p class="font-body text-gray-300 font-bold">L'exclusivitat total. Només l'oferta més alta aconsegueix la taula. El guanyador o guanyadora pot portar 2 amigues o amics gratis.</p>
             </div>
             
-            <div class="glass-card p-8 hover:border-neon-yellow transition-colors duration-300">
-                <i class="fa-solid fa-location-crosshairs text-4xl text-neon-yellow mb-6"></i>
+            <div class="glass-card p-8 rounded-xl hover:border-white transition-colors duration-300">
+                <i class="fa-solid fa-location-crosshairs text-4xl text-white mb-6"></i>
                 <h3 class="font-display text-3xl mb-4">UBICACIÓ SECRETA</h3>
-                <p class="font-body text-gray-400">És a casa nostra, un pis clandestí. Només el guanyador rebrà les coordenades exactes hores abans de l'esdeveniment. Zero normes.</p>
+                <p class="font-body text-gray-400">Tot passa al nostre pis. Zero normes de restaurant, 100% clandestí. Rebràs les coordenades exactes per privat la mateixa nit.</p>
             </div>
         </div>
     </section>
 
-    <!-- BIDDING SECTION (Mock) -->
-    <section id="licitar" class="py-24 px-6 relative z-10 bg-black border-t border-gray-900">
+    <!-- OFFER SECTION -->
+    <section id="oferta" class="py-24 px-6 relative z-10 bg-[#0a0a0a] border-t border-gray-900">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="font-display text-6xl md:text-8xl mb-4 uppercase text-white">Fes la teva <span class="text-neon-orange">Puja</span></h2>
-                <div class="inline-block bg-neon-orange text-black font-display text-2xl px-6 py-2 mb-4 transform -rotate-2">PREU DE SORTIDA: 1€</div>
+                <h2 class="font-display text-6xl md:text-8xl mb-4 uppercase text-white">Fes la teva <span class="text-neon-orange">Oferta</span></h2>
+                <div class="inline-block bg-white text-black font-display text-xl px-6 py-2 mb-4 transform -rotate-1 border-2 border-black">SUBHASTA OBERTA A PARTIR D'1€</div>
                 <p class="text-gray-400 font-body text-lg max-w-2xl mx-auto">
-                    Només el número 1 s'emporta el drop per a 3 persones. Posa el teu IG i licita fort.
+                    Deixa el teu correu i la quantitat que estàs disposat a pagar per assegurar-te els Monxis i el VIP per a tu i 2 col·legues.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 
-                <!-- Formulari de Puja -->
-                <div class="glass-card p-8 border border-gray-800 bg-[#0a0a0a]">
-                    <h3 class="font-display text-3xl mb-6">INTRODUEIX DADES</h3>
+                <!-- Formulari -->
+                <div class="glass-card p-8 rounded-xl border border-gray-800 bg-black shadow-2xl">
+                    <h3 class="font-display text-3xl mb-8 flex items-center gap-3">
+                        INTRODUEIX DADES <i class="fa-solid fa-bolt text-neon-orange"></i>
+                    </h3>
                     
                     <div class="space-y-6">
                         <div>
-                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">Instagram (@)</label>
-                            <input type="text" id="bid-name" placeholder="@el_teu_user" class="w-full bg-[#151515] border border-gray-700 rounded-none p-4 text-white font-body focus:outline-none focus:border-neon-orange transition-colors">
+                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide font-bold">Correu Electrònic</label>
+                            <input type="email" id="offer-email" placeholder="usuari@correu.com" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white font-body focus:outline-none focus:border-neon-orange transition-colors">
                         </div>
                         
                         <div>
-                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">La teva Oferta (€)</label>
-                            <input type="number" id="bid-amount" min="1" step="1" placeholder="Ex: 20" class="w-full bg-[#151515] border border-gray-700 rounded-none p-4 text-4xl font-display text-neon-orange focus:outline-none focus:border-neon-orange transition-colors">
+                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide font-bold">La teva Oferta (€)</label>
+                            <input type="number" id="offer-amount" min="1" step="1" placeholder="Ex: 30" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-4xl font-display text-neon-orange focus:outline-none focus:border-neon-orange transition-colors">
                         </div>
                         
-                        <button onclick="submitBid()" id="btn-bid" class="w-full bg-neon-orange text-black font-display text-2xl py-5 uppercase hover:bg-white transition-colors duration-300 mt-4 shadow-[5px_5px_0px_#333] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
-                            Llençar Puja
+                        <button onclick="submitOffer()" id="btn-offer" class="w-full bg-neon-orange text-black font-display text-2xl py-5 uppercase hover:bg-white transition-all duration-300 mt-4 rounded shadow-[0_0_20px_rgba(255,59,0,0.4)] hover:shadow-none hover:scale-[0.98]">
+                            Fer Oferta
                         </button>
-                        <p id="bid-error" class="text-red-500 text-sm font-body text-center hidden"></p>
+                        <p id="offer-error" class="text-red-500 text-sm font-body text-center hidden font-bold mt-2"></p>
                     </div>
                 </div>
 
                 <!-- Leaderboard -->
                 <div>
-                    <h3 class="font-display text-3xl mb-6 flex items-center justify-between border-b border-gray-800 pb-2">
-                        <span>TOP POSTORS</span>
-                        <span class="text-neon-orange text-sm animate-pulse"><i class="fa-solid fa-circle text-[8px] mr-1"></i> LIVE</span>
+                    <h3 class="font-display text-3xl mb-6 flex items-center justify-between border-b border-gray-800 pb-4">
+                        <span>TOP OFERTES</span>
+                        <span class="text-neon-orange text-sm animate-pulse flex items-center gap-2"><i class="fa-solid fa-circle text-[8px]"></i> EN DIRECTE</span>
                     </h3>
                     
                     <div class="space-y-3" id="leaderboard-container">
@@ -364,17 +342,17 @@
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-gray-900 bg-[#050505]">
-        <div class="font-display text-4xl text-white mb-2">CASAMONXIS<span class="text-neon-orange">.</span></div>
+    <footer class="py-12 text-center border-t border-gray-900 bg-black">
+        <div class="font-display text-4xl text-white mb-2 opacity-50">CASAMONXIS<span class="text-neon-orange">.</span></div>
         <p class="text-gray-600 font-body text-xs uppercase tracking-widest">© 2026 DROP #001 - STRICTLY VIP AFTERPARTY</p>
     </footer>
 
     <script>
         /* =========================================
-           1. LÒGICA DE SCROLL (OBRIR EL BIKINI)
+           1. LÒGICA DE SCROLL (DESMUNTAR EL BIKINI)
            ========================================= */
-        const section = document.getElementById('scroll-sandwich-section');
-        const sandwichCore = document.getElementById('sandwich-core');
+        const scrollSection = document.getElementById('scroll-section');
+        const bikini3D = document.getElementById('bikini-3d');
         
         // Capes
         const topBread = document.getElementById('layer-top');
@@ -382,152 +360,157 @@
         const ham = document.getElementById('layer-ham');
         const bottomBread = document.getElementById('layer-bottom');
         
-        // Tooltip
-        const tooltip = document.getElementById('ingredient-tooltip');
-        let sandwichIsOpen = false;
+        // Variables destat
+        let scrollProgress = 0;
+        let isFullyOpen = false;
 
         window.addEventListener('scroll', () => {
-            const rect = section.getBoundingClientRect();
-            // Calculem progrés entre 0 i 1 quan la secció està en pantalla
-            let progress = 0;
+            const rect = scrollSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
             
-            // Si hem començat a fer scroll dins la secció
-            if (rect.top <= 0) {
-                const totalScroll = rect.height - window.innerHeight;
-                progress = Math.abs(rect.top) / totalScroll;
-                // Limitem entre 0 i 1
-                progress = Math.min(Math.max(progress, 0), 1);
+            // Calculem progrés de 0 a 1 mentre l'usuari baixa per la secció
+            if (rect.top <= 0 && rect.bottom >= viewportHeight) {
+                // Estem dins la secció fent scroll
+                const totalScrollable = rect.height - viewportHeight;
+                scrollProgress = Math.abs(rect.top) / totalScrollable;
+            } else if (rect.top > 0) {
+                scrollProgress = 0; // Abans de la secció
+            } else {
+                scrollProgress = 1; // Després de la secció
             }
 
-            // Apliquem transformacions CSS basades en el progrés (obrim el bikini)
-            // L'ús de base Z més el desplaçament
-            topBread.style.transform = `translateZ(${2 + (progress * 160)}px)`;
-            cheese.style.transform = `scale(1.08) translateZ(${0 + (progress * 80)}px)`;
-            ham.style.transform = `translateZ(${-2 + (progress * 20)}px) rotateZ(${-progress * 4}deg)`;
-            bottomBread.style.transform = `translateZ(${-4 + (progress * -50)}px)`;
+            // Apliquem desplaçaments en l'eix Z segons el progrés
+            // Valors base ajustats per mòbils (no massa extrems)
+            const maxExplodeTop = window.innerWidth < 768 ? 120 : 180;
+            const maxExplodeCheese = window.innerWidth < 768 ? 50 : 80;
+            const maxExplodeBottom = window.innerWidth < 768 ? -80 : -120;
 
-            // Determinar si està obert per permetre l'hover text
-            if (progress > 0.5) {
-                sandwichIsOpen = true;
-            } else {
-                sandwichIsOpen = false;
-                tooltip.style.opacity = '0'; // Amagar per precaució
+            topBread.style.transform = `translateZ(${5 + (scrollProgress * maxExplodeTop)}px) rotateZ(${scrollProgress * 5}deg)`;
+            cheese.style.transform = `scale(1.08) translateZ(${0 + (scrollProgress * maxExplodeCheese)}px)`;
+            ham.style.transform = `translateZ(${-5 + (scrollProgress * 20)}px) rotateZ(${-scrollProgress * 3}deg) scale(0.95)`;
+            bottomBread.style.transform = `translateZ(${-10 + (scrollProgress * maxExplodeBottom)}px)`;
+
+            // Habilitem els tooltips només si el bikini està prou obert (> 80%)
+            isFullyOpen = scrollProgress > 0.8;
+            
+            if(!isFullyOpen) {
+                document.getElementById('ingredient-label').classList.remove('visible');
             }
         });
 
         /* =========================================
-           2. LÒGICA HOVER (TEXT AL COSTAT)
+           2. TOOLTIPS DELS INGREDIENTS
            ========================================= */
         const layers = document.querySelectorAll('.layer');
-        
+        const label = document.getElementById('ingredient-label');
+
         layers.forEach(layer => {
+            // Suport per a Ratolí
             layer.addEventListener('mouseenter', (e) => {
-                if (sandwichIsOpen) {
-                    const text = e.target.getAttribute('data-text');
-                    tooltip.textContent = text;
-                    tooltip.style.opacity = '1';
-                    // Petit efecte visual al bikini sencer
-                    sandwichCore.style.transform = 'rotateX(60deg) rotateZ(-35deg) scale(1.05)';
+                if (isFullyOpen) {
+                    label.innerText = e.target.getAttribute('data-label');
+                    label.classList.add('visible');
+                    // Efecte extra al bikini sencer
+                    bikini3D.style.transform = 'rotateX(55deg) rotateZ(-35deg) scale(1.05)';
                 }
             });
             
             layer.addEventListener('mouseleave', () => {
-                tooltip.style.opacity = '0';
-                sandwichCore.style.transform = 'rotateX(65deg) rotateZ(-40deg) scale(1)';
+                label.classList.remove('visible');
+                bikini3D.style.transform = 'rotateX(60deg) rotateZ(-40deg) scale(1)';
             });
+
+            // Suport per a Mòbil (Taps)
+            layer.addEventListener('touchstart', (e) => {
+                if (isFullyOpen) {
+                    label.innerText = e.target.getAttribute('data-label');
+                    label.classList.add('visible');
+                }
+            }, {passive: true});
         });
 
         /* =========================================
-           3. LÒGICA DE PUJES (MOCK LOCALS)
+           3. LÒGICA D'OFERTES (MOCK)
            ========================================= */
-        let bids = [
-            { name: "@alex_techno", amount: 25 },
-            { name: "@clara.vip", amount: 15 },
-            { name: "Anònim", amount: 5 }
+        let offers = [
+            { email: "a***@gmail.com", amount: 45 },
+            { email: "n***@hotmail.com", amount: 30 },
+            { email: "x***@outlook.com", amount: 15 }
         ];
-
-        // Carregar pujes des de LocalStorage si n'hi ha (opcional per l'MVP)
-        const savedBids = localStorage.getItem('casamonxis_after_bids');
-        if (savedBids) {
-            bids = JSON.parse(savedBids);
-        }
 
         function renderLeaderboard() {
             const container = document.getElementById('leaderboard-container');
             container.innerHTML = '';
             
-            // Ordenar de major a menor
-            bids.sort((a, b) => b.amount - a.amount);
+            // Ordenar major a menor
+            offers.sort((a, b) => b.amount - a.amount);
             
-            const topBids = bids.slice(0, 5); // Mostrem Top 5
+            // Mostrar les 5 millors
+            const topOffers = offers.slice(0, 5);
 
-            topBids.forEach((bid, index) => {
+            topOffers.forEach((offer, index) => {
                 const isWinner = index === 0;
                 
                 const cardClass = isWinner 
-                    ? "bg-[#111] p-5 border border-neon-orange relative overflow-hidden" 
-                    : "bg-[#0a0a0a] p-4 border border-gray-800 opacity-70";
+                    ? "bg-[#111] p-5 border border-neon-orange relative overflow-hidden rounded" 
+                    : "bg-[#0a0a0a] p-4 border border-gray-800 opacity-70 rounded";
                 
                 const rankColor = isWinner ? "text-neon-orange" : "text-gray-500";
                 const rankSize = isWinner ? "text-5xl" : "text-3xl";
 
-                let winnerTag = isWinner ? `<div class="text-neon-orange text-[10px] uppercase font-bold tracking-widest mt-1 border border-neon-orange inline-block px-2">Guanyador + 2 Acomp.</div>` : '';
+                let winnerTag = isWinner ? `<div class="text-neon-orange text-[10px] uppercase font-bold tracking-widest mt-1 border border-neon-orange inline-block px-2 py-1 bg-neon-orange/10">🏆 Guanyador + 2 Acomp.</div>` : '';
 
                 const html = `
                     <div class="${cardClass} flex justify-between items-center transition-all duration-300 hover:bg-[#1a1a1a]">
                         <div class="flex items-center gap-4">
                             <span class="font-display ${rankSize} ${rankColor} w-10">#${index + 1}</span>
                             <div>
-                                <span class="font-body font-bold text-white text-lg">${bid.name}</span>
+                                <span class="font-body font-bold text-white text-lg">${offer.email}</span>
                                 <br/>
                                 ${winnerTag}
                             </div>
                         </div>
-                        <span class="font-display text-4xl ${isWinner ? 'text-white' : 'text-gray-400'}">${bid.amount}€</span>
+                        <span class="font-display text-4xl ${isWinner ? 'text-white' : 'text-gray-400'}">${offer.amount}€</span>
                     </div>
                 `;
                 container.innerHTML += html;
             });
         }
 
-        function submitBid() {
-            const nameInput = document.getElementById('bid-name');
-            const amountInput = document.getElementById('bid-amount');
-            const errorMsg = document.getElementById('bid-error');
-            const btn = document.getElementById('btn-bid');
+        function submitOffer() {
+            const emailInput = document.getElementById('offer-email');
+            const amountInput = document.getElementById('offer-amount');
+            const errorMsg = document.getElementById('offer-error');
+            const btn = document.getElementById('btn-offer');
             
-            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
             const amount = parseInt(amountInput.value);
             
-            // Validacions base
-            if (!name) {
-                showError("Posa el teu IG per saber qui ets.");
+            // Validacions
+            if (!email || !email.includes('@')) {
+                showError("Introdueix un correu vàlid per poder contactar-te.");
                 return;
             }
             if (isNaN(amount) || amount < 1) {
                 showError("L'oferta mínima és 1€.");
                 return;
             }
-            
-            // Comprovar si supera la puja més alta (opcional però dona competició)
-            const highestBid = bids.length > 0 ? bids[0].amount : 0;
-            if (amount <= highestBid && bids.length > 0) {
-                showError(`Has de superar al postor #1 (${highestBid}€) per guanyar la taula.`);
-                return;
-            }
 
-            // Afegir puja mock
-            bids.push({ name: name, amount: amount });
-            localStorage.setItem('casamonxis_after_bids', JSON.stringify(bids));
+            // Emmascarar el correu (ex: u***@gmail.com) per al disseny
+            const parts = email.split('@');
+            const maskedEmail = parts[0].charAt(0) + "***@" + parts[1];
+
+            // Afegir a la llista
+            offers.push({ email: maskedEmail, amount: amount });
             
             // UI Feedback
             errorMsg.classList.add('hidden');
             const originalText = btn.innerText;
-            btn.innerText = "PUJA ACCEPTADA!";
+            btn.innerText = "OFERTA ENVIADA!";
             btn.classList.add('bg-white', 'text-black');
             btn.classList.remove('bg-neon-orange');
             
-            nameInput.value = '';
+            emailInput.value = '';
             amountInput.value = '';
             renderLeaderboard();
             
@@ -539,12 +522,12 @@
         }
 
         function showError(msg) {
-            const errorMsg = document.getElementById('bid-error');
+            const errorMsg = document.getElementById('offer-error');
             errorMsg.innerText = msg;
             errorMsg.classList.remove('hidden');
         }
 
-        // Inicialitzar
+        // Inicialitzar ranking a l'inici
         renderLeaderboard();
     </script>
 </body>

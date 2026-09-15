@@ -1,509 +1,428 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASAMONXIS | Sopar VIP</title>
-    
-    <!-- Tailwind CSS per a l'estil modern i minimalista -->
+    <title>CASAMONXIS | Experiència VIP Clandestina</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Fonts de Google: Inter per llegibilitat i Bebas Neue per l'impacte visual (estil hype/drop) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Configurant Tailwind amb les fonts personalitzades -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Bebas Neue', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        'display': ['Anton', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f6f6f6',
-                            900: '#0a0a0a',
-                            accent: '#e5e5e5'
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'neon-orange': '#ff3b00',
+                        'neon-yellow': '#ffb800',
+                        'dark-bg': '#0a0a0a',
                     }
                 }
             }
         }
     </script>
-    
     <style>
         body {
-            background-color: #050505;
-            color: #ffffff;
-            /* Patró de fons molt subtil per donar textura */
-            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-color: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0a0a0a 70%);
         }
-        
-        .glitch-effect {
+
+        /* Soroll de fons urbà */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* TEXT MARQUEE ANIMATION */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ff3b00;
+            color: black;
+            padding: 10px 0;
+            transform: rotate(-2deg) scale(1.05);
             position: relative;
+            z-index: 10;
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* BIKINI 3D CSS ANIMATION */
+        .bikini-wrapper {
+            perspective: 1500px;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .bikini-3d {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            transform-style: preserve-3d;
+            transform: rotateX(65deg) rotateZ(-45deg);
+            animation: float 6s ease-in-out infinite;
+        }
+        .layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            transform-style: preserve-3d;
         }
         
-        /* Estilització per a l'entrada de text per fer-la semblar premium */
-        .premium-input {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
+        /* Pa de dalt */
+        .bread-top {
+            background: linear-gradient(135deg, #e3a046, #c27c22);
+            border: 4px solid #8c500b;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3), 5px 5px 15px rgba(0,0,0,0.5);
+            animation: explode-top 4s ease-in-out infinite alternate;
+            z-index: 4;
         }
-        .premium-input:focus {
-            outline: none;
-            border-color: #fff;
-            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        /* Formatge fos */
+        .cheese {
+            background: #ffc400;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 196, 0, 0.8), inset 2px 2px 10px rgba(255,255,255,0.5);
+            animation: explode-cheese 4s ease-in-out infinite alternate;
+            z-index: 3;
+            transform: scale(1.05);
+        }
+        /* Pernil dolç */
+        .ham {
+            background: #d45d5d;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+            border: 2px solid #b34a4a;
+            animation: explode-ham 4s ease-in-out infinite alternate;
+            z-index: 2;
+        }
+        /* Pa de baix */
+        .bread-bottom {
+            background: linear-gradient(135deg, #c27c22, #a36517);
+            border: 4px solid #754106;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.8);
+            animation: explode-bottom 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /* Animacions d'explosió dels ingredients */
+        @keyframes float {
+            0%, 100% { transform: rotateX(65deg) rotateZ(-45deg) translateY(0); }
+            50% { transform: rotateX(65deg) rotateZ(-45deg) translateY(-20px); }
+        }
+        @keyframes explode-top {
+            0%, 20% { transform: translateZ(10px); }
+            80%, 100% { transform: translateZ(120px) rotateZ(5deg); }
+        }
+        @keyframes explode-cheese {
+            0%, 20% { transform: translateZ(5px) scale(1.05); }
+            80%, 100% { transform: translateZ(50px) scale(1.1); }
+        }
+        @keyframes explode-ham {
+            0%, 20% { transform: translateZ(0px); }
+            80%, 100% { transform: translateZ(-20px) rotateZ(-3deg); }
+        }
+        @keyframes explode-bottom {
+            0%, 20% { transform: translateZ(-5px); }
+            80%, 100% { transform: translateZ(-90px); }
+        }
+
+        /* Glassmorphism pels contenidors */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
         }
         
-        /* Ocultar fletxes de l'input numèric */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .glitch-hover:hover {
+            animation: glitch-anim 0.3s linear infinite;
         }
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes glitch-anim {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-white selection:text-black">
+<body class="antialiased selection:bg-neon-orange selection:text-black">
+    <div class="noise"></div>
 
-    <!-- Navbar / Header -->
-    <header class="w-full p-6 flex justify-between items-center border-b border-white/10 relative z-10 bg-black/50 backdrop-blur-md fixed top-0">
-        <div class="font-display text-3xl tracking-widest">CASAMONXIS</div>
-        <div class="flex items-center gap-3 text-sm font-mono text-white/60">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-            SUBHASTA ACTIVA
-        </div>
-    </header>
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 top-0 py-4 px-6 md:px-12 flex justify-between items-center glass-card border-x-0 border-t-0 rounded-none">
+        <div class="font-display text-3xl tracking-wider text-white glitch-hover cursor-pointer">CASAMONXIS<span class="text-neon-orange">.</span></div>
+        <a href="#licitar" class="bg-white text-black font-display tracking-widest px-6 py-2 uppercase hover:bg-neon-orange hover:text-white transition-colors duration-300 transform hover:scale-105">
+            Licitacions obertes
+        </a>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center justify-center pt-28 pb-20 px-4 max-w-4xl mx-auto w-full">
-        
-        <!-- Hero Section -->
-        <div class="text-center mb-16 fade-in">
-            <h1 class="font-display text-7xl md:text-9xl tracking-tighter mb-2 leading-none uppercase">
-                Menú<br/>Secret
+    <!-- HERO SECTION -->
+    <section class="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center relative px-4">
+        <div class="text-center z-10 max-w-4xl mx-auto">
+            <h1 class="font-display text-7xl md:text-9xl leading-none tracking-tight uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-600">
+                Sopar <br/><span class="text-neon-orange">Clandestí</span>
             </h1>
-            <p class="font-mono text-white/50 tracking-widest text-sm md:text-base mt-6 mb-2">3 PLATS. 3 PERSONES. 1 EXPERIÈNCIA VIP.</p>
-            <p class="text-white/80 max-w-lg mx-auto font-light text-sm md:text-base">
-                El nostre pis. Un menú degustació sorpresa de 3 plats. L'experiència definitiva per als 3 millors postors. Fes la teva puja per assegurar el teu seient a la taula.
+            <p class="font-body text-gray-400 text-lg md:text-2xl mb-8 uppercase tracking-widest font-bold">
+                No és un restaurant. És casa nostra.
             </p>
         </div>
 
-        <!-- Leaderboard (Top 3) -->
-        <div class="w-full max-w-md mb-16 fade-in" style="animation-delay: 0.1s;">
-            <h2 class="font-mono text-xs text-white/40 mb-4 tracking-widest uppercase border-b border-white/10 pb-2">Top 3 Postors (Seients reservats)</h2>
-            
-            <div id="leaderboard-container" class="flex flex-col gap-3">
-                <!-- Les pujes s'ompliran aquí via JavaScript -->
-                <div class="text-center text-white/30 py-4 text-sm font-mono animate-pulse-slow">
-                    Carregant pujes en temps real...
-                </div>
-            </div>
-            
-            <div class="mt-4 flex justify-between text-xs font-mono text-white/40">
-                <span>Puja mínima actual: <span id="min-bid-display" class="text-white">10€</span></span>
+        <!-- 3D BIKINI ANIMATION -->
+        <div class="bikini-wrapper z-10">
+            <div class="bikini-3d">
+                <div class="layer bread-top"></div>
+                <div class="layer cheese"></div>
+                <div class="layer ham"></div>
+                <div class="layer bread-bottom"></div>
             </div>
         </div>
+        
+        <div class="mt-8 z-10 animate-bounce">
+            <a href="#info" class="text-gray-500 hover:text-white transition-colors">
+                <i class="fa-solid fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
 
-        <!-- Bidding Section / Auth -->
-        <div class="w-full max-w-md bg-white/5 p-6 rounded-lg border border-white/10 fade-in" style="animation-delay: 0.2s;">
+    <!-- MARQUEE -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            /// MENÚ SECRET /// NOMÉS 3 PLACES /// EXPERIÈNCIA VIP /// NO HO PUGIS A STORIES /// SENSE NORMES /// CASAMONXIS /// MENÚ SECRET /// NOMÉS 3 PLACES /// EXPERIÈNCIA VIP ///
+        </div>
+    </div>
+
+    <!-- INFO SECTION -->
+    <section id="info" class="py-24 px-6 md:px-12 max-w-6xl mx-auto relative z-10">
+        <h2 class="font-display text-5xl md:text-7xl mb-16 text-center">LA <span class="text-neon-orange border-b-4 border-neon-orange">XIXA</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 hover:border-neon-orange transition-colors duration-300">
+                <i class="fa-solid fa-utensils text-4xl text-neon-orange mb-6"></i>
+                <h3 class="font-display text-3xl mb-4">MENÚ SECRET</h3>
+                <p class="font-body text-gray-400">3 plats exclusius dissenyats per nosaltres. No sabràs què sopes fins que t'ho posem al plat. Producte brutal, receptes de barri elevades.</p>
+            </div>
             
-            <!-- Estat: Carregant Auth -->
-            <div id="auth-loading" class="text-center py-4 text-sm font-mono text-white/50">
-                Iniciant connexió segura...
+            <div class="glass-card p-8 hover:border-neon-yellow transition-colors duration-300">
+                <i class="fa-solid fa-key text-4xl text-neon-yellow mb-6"></i>
+                <h3 class="font-display text-3xl mb-4">NOMÉS 3 PLACES</h3>
+                <p class="font-body text-gray-400">Ni una més ni una menys. Els 3 millors postors guanyen el seu lloc a la taula. Sense amiguismes, puja més fort i entra a la zona VIP.</p>
             </div>
-
-            <!-- Estat: No identificat (Demana nom) -->
-            <div id="auth-section" class="hidden flex-col gap-4">
-                <h3 class="font-display text-2xl tracking-wide uppercase text-center">Identifica't per licitar</h3>
-                <p class="text-xs text-white/50 text-center font-mono">Per evitar bots, necessitem saber qui ets abans de pujar.</p>
-                <div class="flex flex-col gap-2 mt-2">
-                    <input type="text" id="user-name-input" placeholder="El teu Nom o Nickname" class="premium-input w-full p-4 text-center font-mono text-white rounded-none" maxlength="20">
-                    <button id="login-btn" class="w-full bg-white text-black font-bold uppercase tracking-widest p-4 hover:bg-gray-200 transition-colors text-sm">
-                        Entrar a la subhasta
-                    </button>
-                    <!-- Nota tècnica per al creador -->
-                    <p class="text-[10px] text-white/30 text-center mt-2 leading-tight">
-                        *Nota pel desenvolupador: En aquest prototip usem un nom manual. Al penjar-ho a GitHub, pots habilitar el botó de Google al codi (mira els comentaris de JS).
-                    </p>
-                </div>
+            
+            <div class="glass-card p-8 hover:border-white transition-colors duration-300">
+                <i class="fa-solid fa-house-chimney text-4xl text-white mb-6"></i>
+                <h3 class="font-display text-3xl mb-4">AL NOSTRE PIS</h3>
+                <p class="font-body text-gray-400">L'any passat us donàvem menjar tornant de festa. Aquest any veniu a casa nostra. Bon beure, bona música i una nit per recordar (o no).</p>
             </div>
+        </div>
+    </section>
 
-            <!-- Estat: Identificat (Formulari de puja) -->
-            <div id="bid-section" class="hidden flex-col gap-4">
-                <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-2">
-                    <span class="text-xs font-mono text-white/50">Licitant com: <span id="current-username-display" class="text-white font-bold"></span></span>
-                    <button id="logout-btn" class="text-xs text-white/30 hover:text-white underline">Sortir</button>
-                </div>
-                
-                <h3 class="font-display text-3xl tracking-wide uppercase text-center">Fes la teva puja</h3>
-                
-                <form id="bid-form" class="flex flex-col gap-4 mt-2">
-                    <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-mono text-white/50">€</span>
-                        <input type="number" id="bid-amount" required placeholder="0.00" step="1" class="premium-input w-full p-4 pl-12 text-2xl font-mono text-white rounded-none">
+    <!-- BIDDING SECTION -->
+    <section id="licitar" class="py-24 px-6 relative z-10 bg-black border-t border-gray-800">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl mb-6 text-center uppercase">Aconsegueix la teva cadira</h2>
+            <p class="text-center text-gray-400 mb-12 font-body text-lg">Inicia sessió amb Google. Fes la teva puja. Els 3 primers s'ho emporten.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Zona de Login i Formulari -->
+                <div class="glass-card p-8 relative overflow-hidden">
+                    
+                    <!-- Estat No Loguejat -->
+                    <div id="login-section" class="text-center py-8">
+                        <h3 class="font-display text-2xl mb-4">IDENTIFICA'T PER LICITAR</h3>
+                        <p class="text-gray-400 text-sm mb-8">Evitem trolls. Necessites un compte de Google real per participar en la subhasta.</p>
+                        
+                        <button onclick="mockLogin()" class="w-full bg-white text-black font-bold py-4 px-6 rounded hover:bg-gray-200 transition-colors flex items-center justify-center gap-3">
+                            <svg class="w-6 h-6" viewBox="0 0 48 48">
+                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                            </svg>
+                            Entrar amb Google
+                        </button>
                     </div>
-                    
-                    <div id="bid-error" class="text-red-500 text-xs font-mono hidden text-center"></div>
-                    <div id="bid-success" class="text-green-400 text-xs font-mono hidden text-center">Puja registrada correctament!</div>
-                    
-                    <button type="submit" class="w-full bg-white text-black font-bold uppercase tracking-widest p-4 hover:bg-gray-200 transition-transform active:scale-95 text-sm flex justify-center items-center gap-2">
-                        <span>CONFIRMAR PUJA</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                        </svg>
-                    </button>
-                    <p class="text-[10px] text-white/30 text-center uppercase tracking-widest mt-1">Aquesta acció és un compromís ferm.</p>
-                </form>
+
+                    <!-- Estat Loguejat (Formulari Pujes) amagat per defecte -->
+                    <div id="bid-section" class="hidden">
+                        <div class="flex items-center gap-3 mb-6 pb-6 border-b border-gray-700">
+                            <div class="w-10 h-10 bg-neon-orange rounded-full flex items-center justify-center font-bold" id="user-initial">U</div>
+                            <div>
+                                <p class="text-sm text-gray-400">Connectat com:</p>
+                                <p class="font-bold text-white" id="user-email">usuari@gmail.com</p>
+                            </div>
+                            <button onclick="mockLogout()" class="ml-auto text-xs text-red-500 hover:text-red-400 underline">Sortir</button>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl mb-4">FES LA TEVA PUJA</h3>
+                        <div class="flex items-end gap-4 mb-4">
+                            <div class="flex-1">
+                                <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">Quantitat (€)</label>
+                                <input type="number" id="bid-amount" min="10" step="1" placeholder="Ex: 25" class="w-full bg-black border-2 border-gray-700 rounded p-4 text-2xl font-display text-white focus:outline-none focus:border-neon-orange transition-colors">
+                            </div>
+                            <button onclick="submitBid()" class="bg-neon-orange text-black font-display text-xl px-8 py-4 uppercase hover:bg-white transition-colors duration-300">
+                                Pujar!
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500">*La puja mínima actual per entrar al Top 3 és de <span class="text-white font-bold">16€</span></p>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div>
+                    <h3 class="font-display text-3xl mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-trophy text-neon-yellow"></i> 
+                        TOP 3 POSTORS
+                    </h3>
+                    <div class="space-y-4" id="leaderboard">
+                        <!-- Rank 1 -->
+                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-neon-yellow">
+                            <div class="flex items-center gap-4">
+                                <span class="font-display text-2xl text-neon-yellow">#1</span>
+                                <span class="font-body font-bold text-white">m***@gmail.com</span>
+                            </div>
+                            <span class="font-display text-3xl text-white">35€</span>
+                        </div>
+                        <!-- Rank 2 -->
+                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-gray-300">
+                            <div class="flex items-center gap-4">
+                                <span class="font-display text-2xl text-gray-300">#2</span>
+                                <span class="font-body font-bold text-white">a***@gmail.com</span>
+                            </div>
+                            <span class="font-display text-3xl text-white">28€</span>
+                        </div>
+                        <!-- Rank 3 -->
+                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-orange-600">
+                            <div class="flex items-center gap-4">
+                                <span class="font-display text-2xl text-orange-600">#3</span>
+                                <span class="font-body font-bold text-white">j***@gmail.com</span>
+                            </div>
+                            <span class="font-display text-3xl text-white">15€</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer class="w-full py-6 text-center text-white/20 font-mono text-[10px] tracking-widest uppercase border-t border-white/5 mt-auto">
-        &copy; 2026 CASAMONXIS. Tots els drets reservats.<br>
-        Fet des de casa, per menjar a casa.
+    <footer class="py-8 text-center text-gray-600 font-body text-sm border-t border-gray-900 bg-black">
+        <p>© 2024 CASAMONXIS. L'adreça del pis s'enviarà només als guanyadors.</p>
     </footer>
 
-    <!-- Configuració de Firebase -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Inicialització segura de l'entorn
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'casamonxis-auction-app';
-        let firebaseConfig;
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        /* 
+        ========================================================================
+        🔥 INSTRUCCIONS FIREBASE (PER QUAN HO PUGIS A GITHUB PAGES) 🔥
+        ========================================================================
+        Perquè el login de Google i les pujes siguin reals, necessites descomentar
+        el codi de sota i afegir el teu Firebase Config.
         
-        try {
-            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-                // Dummy config per evitar errors d'execució si falla l'entorn
-                apiKey: "dummy", authDomain: "dummy.firebaseapp.com", projectId: "dummy", storageBucket: "dummy.appspot.com", messagingSenderId: "123", appId: "1:123:web:123"
-            };
-        } catch(e) {
-            console.error("Error parsing firebase config", e);
-        }
+        1. Ves a firebase.google.com, crea un projecte gratuït.
+        2. Activa "Authentication" (tria Google com a proveïdor).
+        3. Activa "Firestore Database" (per guardar les pujes).
+        4. Copia la teva "firebaseConfig" i enganxa-la aquí sota.
+        ========================================================================
+        */
+        
+        /* 
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "LA_TEVA_API_KEY",
+            authDomain: "el-teu-projecte.firebaseapp.com",
+            projectId: "el-teu-projecte",
+            storageBucket: "el-teu-projecte.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef"
+        };
 
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
         const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
 
-        // Variables d'Estat global
-        let currentUser = null;
-        let displayName = "";
-        let currentBids = [];
-        let minimumRequiredBid = 10;
+        // Exemple real de Login amb Google:
+        // function realGoogleLogin() {
+        //     signInWithPopup(auth, provider).catch(error => console.error(error));
+        // }
+        */
 
-        // Elements del DOM
-        const authLoading = document.getElementById('auth-loading');
-        const authSection = document.getElementById('auth-section');
+        // ========================================================================
+        // SIMULACIÓ PER A LA VISTA PRÈVIA (MOCK)
+        // (Això fa que la web sembli que funciona per poder-la provar ara mateix)
+        // ========================================================================
+        
+        const loginSection = document.getElementById('login-section');
         const bidSection = document.getElementById('bid-section');
-        const userNameInput = document.getElementById('user-name-input');
-        const loginBtn = document.getElementById('login-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const bidForm = document.getElementById('bid-form');
-        const bidAmountInput = document.getElementById('bid-amount');
-        const bidError = document.getElementById('bid-error');
-        const bidSuccess = document.getElementById('bid-success');
-        const leaderboardContainer = document.getElementById('leaderboard-container');
-        const minBidDisplay = document.getElementById('min-bid-display');
-        const currentUsernameDisplay = document.getElementById('current-username-display');
+        const userEmailSpan = document.getElementById('user-email');
+        const userInitial = document.getElementById('user-initial');
 
-        // -------------------------------------------------------------
-        // GESTIÓ D'AUTENTICACIÓ
-        // -------------------------------------------------------------
-        
-        async function authenticateUser() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Authentication Error:", error);
-                authLoading.innerText = "Error de connexió.";
-            }
+        function mockLogin() {
+            // Simulem que l'usuari entra amb Google
+            setTimeout(() => {
+                const mockEmail = "amic.festuc@gmail.com";
+                userEmailSpan.innerText = mockEmail;
+                userInitial.innerText = mockEmail.charAt(0).toUpperCase();
+                
+                loginSection.classList.add('hidden');
+                bidSection.classList.remove('hidden');
+            }, 500); // 0.5 segons de "carrega"
         }
 
-        // Listener d'estat d'autenticació
-        onAuthStateChanged(auth, (user) => {
-            authLoading.classList.add('hidden');
-            
-            if (user) {
-                currentUser = user;
-                // Si estem fent servir login anònim, demanarem un nom que guardarem en memòria/localstorage
-                const savedName = localStorage.getItem('casamonxis_name');
-                
-                if (savedName) {
-                    displayName = savedName;
-                    showBidSection();
-                } else {
-                    showAuthSection();
-                }
-                
-                // Un cop autenticat, comencem a escoltar les pujes (Regla 3: Auth abans que Queries)
-                startBidsListener();
-                
-            } else {
-                currentUser = null;
-                showAuthSection();
-            }
-        });
-
-        // Inicia el procés d'autenticació inicial
-        authenticateUser();
-
-        // -------------------------------------------------------------
-        // INTERFÍCIE I ACCIONS D'USUARI
-        // -------------------------------------------------------------
-        
-        function showAuthSection() {
-            authSection.classList.remove('hidden');
-            authSection.classList.add('flex');
+        function mockLogout() {
+            loginSection.classList.remove('hidden');
             bidSection.classList.add('hidden');
-            bidSection.classList.remove('flex');
+            document.getElementById('bid-amount').value = '';
         }
 
-        function showBidSection() {
-            authSection.classList.add('hidden');
-            authSection.classList.remove('flex');
-            bidSection.classList.remove('hidden');
-            bidSection.classList.add('flex');
-            currentUsernameDisplay.textContent = displayName;
-            bidAmountInput.min = minimumRequiredBid;
-            bidAmountInput.value = "";
-        }
-
-        // Funcionalitat de "Login" manual (per prototip)
-        loginBtn.addEventListener('click', () => {
-            const name = userNameInput.value.trim();
-            if (name.length < 2) {
-                alert("Si us plau, introdueix un nom vàlid.");
-                return;
-            }
-            displayName = name;
-            localStorage.setItem('casamonxis_name', name);
-            showBidSection();
-        });
-
-        /* 
-         * NOTA PER GITHUB PAGES (PRODUCCIÓ):
-         * Per usar Google Login real (recomanat contra trolls), substitueix el event listener de dalt per aquest:
-         * 
-         * loginBtn.addEventListener('click', async () => {
-         *     const provider = new GoogleAuthProvider();
-         *     try {
-         *         const result = await signInWithPopup(auth, provider);
-         *         displayName = result.user.displayName || result.user.email.split('@')[0];
-         *         localStorage.setItem('casamonxis_name', displayName);
-         *         showBidSection();
-         *     } catch (error) {
-         *         console.error("Error al loguejar amb Google:", error);
-         *     }
-         * });
-         */
-
-        // Logout
-        logoutBtn.addEventListener('click', async () => {
-            localStorage.removeItem('casamonxis_name');
-            displayName = "";
-            showAuthSection();
-        });
-
-        // -------------------------------------------------------------
-        // LÒGICA DE BASE DE DADES (PUJES)
-        // -------------------------------------------------------------
-        let unsubscribeBids = null;
-
-        function startBidsListener() {
-            if (!currentUser) return; // Regla 3
-
-            // Regla 1: Rutes estrictes a public/data/{collection}
-            const bidsRef = collection(db, 'artifacts', appId, 'public', 'data', 'bids');
-
-            // Regla 2: Sense queries complexes (portem tot i ordenem en memòria)
-            unsubscribeBids = onSnapshot(bidsRef, (snapshot) => {
-                const bids = [];
-                snapshot.forEach((doc) => {
-                    bids.push({ id: doc.id, ...doc.data() });
-                });
-
-                // Ordenar en JS: De major a menor puja. En cas d'empat, guanya la més antiga.
-                bids.sort((a, b) => {
-                    if (b.amount === a.amount) {
-                        const timeA = a.timestamp?.toMillis() || 0;
-                        const timeB = b.timestamp?.toMillis() || 0;
-                        return timeA - timeB; 
-                    }
-                    return b.amount - a.amount;
-                });
-
-                currentBids = bids;
-                renderLeaderboard();
-                
-            }, (error) => {
-                console.error("Error al carregar les pujes: ", error);
-            });
-        }
-
-        function renderLeaderboard() {
-            leaderboardContainer.innerHTML = '';
-            
-            // Agafem el top 3
-            const top3 = currentBids.slice(0, 3);
-            
-            if (top3.length === 0) {
-                leaderboardContainer.innerHTML = `
-                    <div class="text-center text-white/30 py-4 text-sm font-mono border border-dashed border-white/10 rounded-sm">
-                        Cap puja encara. Sigues el primer!
-                    </div>
-                `;
-                minimumRequiredBid = 10;
-            } else {
-                top3.forEach((bid, index) => {
-                    // Estils especials segons posició
-                    let rankStyle = "text-white/60 bg-white/5 border-white/5"; // Posició 2 i 3
-                    let nameStyle = "text-white/80";
-                    let rankText = `#${index + 1}`;
-                    
-                    if (index === 0) {
-                        rankStyle = "text-black bg-white border-white"; // 1r lloc destaca
-                        nameStyle = "text-black font-bold";
-                    }
-
-                    const html = `
-                        <div class="flex items-center justify-between p-3 border rounded-sm transition-all duration-300 ${rankStyle}">
-                            <div class="flex items-center gap-3">
-                                <span class="font-display text-xl w-6 text-center">${rankText}</span>
-                                <span class="font-mono text-sm uppercase truncate max-w-[120px] md:max-w-[180px] ${nameStyle}">${escapeHTML(bid.name)}</span>
-                            </div>
-                            <div class="font-mono font-bold text-lg">
-                                ${bid.amount.toFixed(2)}€
-                            </div>
-                        </div>
-                    `;
-                    leaderboardContainer.innerHTML += html;
-                });
-
-                // Càlcul de la puja mínima.
-                // Si hi ha 3 persones, cal superar el 3r lloc per entrar.
-                if (top3.length === 3) {
-                    minimumRequiredBid = Math.floor(top3[2].amount) + 1;
-                } else {
-                    minimumRequiredBid = 10;
-                }
-            }
-
-            minBidDisplay.textContent = minimumRequiredBid + "€";
-            if (bidAmountInput) {
-                bidAmountInput.min = minimumRequiredBid;
-            }
-        }
-
-        // -------------------------------------------------------------
-        // ENVIAMENT DE PUJES
-        // -------------------------------------------------------------
-        
-        bidForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            if (!currentUser || !displayName) {
-                showAuthSection();
-                return;
-            }
-
-            const amount = parseFloat(bidAmountInput.value);
-            
-            // Validacions
-            if (isNaN(amount) || amount < minimumRequiredBid) {
-                showError(`La puja mínima és de ${minimumRequiredBid}€`);
+        function submitBid() {
+            const amount = document.getElementById('bid-amount').value;
+            if(!amount || amount <= 15) {
+                alert('La teva puja ha de ser superior a 15€ per superar al Top 3 actual!');
                 return;
             }
             
-            // Prevenir pujes de spam absurdes (opcional, posarem limit a 5000€)
-            if (amount > 5000) {
-                showError(`Si us plau, sigues realista.`);
-                return;
-            }
-
-            const submitBtn = bidForm.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="animate-pulse">PROCESSANT...</span>';
-            hideError();
+            // Simulem que la puja s'ha guardat
+            const btn = document.querySelector('button[onclick="submitBid()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "PUJA FETA!";
+            btn.classList.add('bg-green-500');
             
-            try {
-                const bidsRef = collection(db, 'artifacts', appId, 'public', 'data', 'bids');
-                
-                await addDoc(bidsRef, {
-                    amount: amount,
-                    name: displayName,
-                    userId: currentUser.uid,
-                    timestamp: serverTimestamp() // Utilitzem l'hora del servidor per evitar trampes
-                });
-                
-                // Èxit
-                bidAmountInput.value = '';
-                bidSuccess.classList.remove('hidden');
-                setTimeout(() => {
-                    bidSuccess.classList.add('hidden');
-                }, 3000);
-                
-            } catch (error) {
-                console.error("Error al fer la puja:", error);
-                showError("Hi ha hagut un error, torna-ho a provar.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = `
-                    <span>CONFIRMAR PUJA</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                    </svg>
-                `;
-            }
-        });
-
-        // Funcions d'utilitat auxiliars
-        function showError(msg) {
-            bidError.textContent = msg;
-            bidError.classList.remove('hidden');
+            setTimeout(() => {
+                alert('Puja registrada! En un entorn real, el Leaderboard s\'actualitzaria ara mateix.');
+                btn.innerText = originalText;
+                btn.classList.remove('bg-green-500');
+                document.getElementById('bid-amount').value = '';
+            }, 1000);
         }
-
-        function hideError() {
-            bidError.classList.add('hidden');
-        }
-
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    "'": '&#39;',
-                    '"': '&quot;'
-                }[tag] || tag)
-            );
-        }
-
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CASAMONXIS | Experiència VIP Clandestina</title>
+    <title>CASAMONXIS | DROP #001 - Bikini Trufat</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -58,7 +58,7 @@
         }
         .marquee-content {
             display: inline-block;
-            animation: marquee 15s linear infinite;
+            animation: marquee 20s linear infinite;
             font-family: 'Anton', sans-serif;
             font-size: 1.5rem;
             letter-spacing: 2px;
@@ -72,18 +72,18 @@
         .bikini-wrapper {
             perspective: 1500px;
             width: 100%;
-            height: 400px;
+            height: 350px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
         .bikini-3d {
             position: relative;
             width: 220px;
             height: 220px;
             transform-style: preserve-3d;
-            transform: rotateX(65deg) rotateZ(-45deg);
+            transform: rotateX(60deg) rotateZ(-45deg);
             animation: float 6s ease-in-out infinite;
         }
         .layer {
@@ -92,8 +92,14 @@
             height: 100%;
             border-radius: 15px;
             transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
+        .layer:hover {
+            box-shadow: 0 0 30px #ff3b00;
+        }
+
         /* Pa de dalt */
         .bread-top {
             background: linear-gradient(135deg, #e3a046, #c27c22);
@@ -128,29 +134,27 @@
             z-index: 1;
         }
 
-        /* Animacions d'explosió dels ingredients */
         @keyframes float {
-            0%, 100% { transform: rotateX(65deg) rotateZ(-45deg) translateY(0); }
-            50% { transform: rotateX(65deg) rotateZ(-45deg) translateY(-20px); }
+            0%, 100% { transform: rotateX(60deg) rotateZ(-45deg) translateY(0); }
+            50% { transform: rotateX(60deg) rotateZ(-45deg) translateY(-20px); }
         }
         @keyframes explode-top {
             0%, 20% { transform: translateZ(10px); }
-            80%, 100% { transform: translateZ(120px) rotateZ(5deg); }
+            80%, 100% { transform: translateZ(100px) rotateZ(5deg); }
         }
         @keyframes explode-cheese {
             0%, 20% { transform: translateZ(5px) scale(1.05); }
-            80%, 100% { transform: translateZ(50px) scale(1.1); }
+            80%, 100% { transform: translateZ(40px) scale(1.1); }
         }
         @keyframes explode-ham {
             0%, 20% { transform: translateZ(0px); }
-            80%, 100% { transform: translateZ(-20px) rotateZ(-3deg); }
+            80%, 100% { transform: translateZ(-15px) rotateZ(-3deg); }
         }
         @keyframes explode-bottom {
             0%, 20% { transform: translateZ(-5px); }
-            80%, 100% { transform: translateZ(-90px); }
+            80%, 100% { transform: translateZ(-70px); }
         }
 
-        /* Glassmorphism pels contenidors */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -158,49 +162,51 @@
             border-radius: 16px;
         }
         
-        .glitch-hover:hover {
-            animation: glitch-anim 0.3s linear infinite;
-        }
-        @keyframes glitch-anim {
-            0% { transform: translate(0) }
-            20% { transform: translate(-2px, 2px) }
-            40% { transform: translate(-2px, -2px) }
-            60% { transform: translate(2px, 2px) }
-            80% { transform: translate(2px, -2px) }
-            100% { transform: translate(0) }
+        /* Highlight pel guanyador */
+        .winner-card {
+            background: linear-gradient(45deg, rgba(255, 59, 0, 0.1), rgba(0, 0, 0, 0.8));
+            border: 2px solid #ff3b00;
+            box-shadow: 0 0 20px rgba(255, 59, 0, 0.3);
         }
     </style>
 </head>
 <body class="antialiased selection:bg-neon-orange selection:text-black">
     <div class="noise"></div>
 
-    <!-- NAVBAR -->
     <nav class="fixed w-full z-40 top-0 py-4 px-6 md:px-12 flex justify-between items-center glass-card border-x-0 border-t-0 rounded-none">
-        <div class="font-display text-3xl tracking-wider text-white glitch-hover cursor-pointer">CASAMONXIS<span class="text-neon-orange">.</span></div>
-        <a href="#licitar" class="bg-white text-black font-display tracking-widest px-6 py-2 uppercase hover:bg-neon-orange hover:text-white transition-colors duration-300 transform hover:scale-105">
-            Licitacions obertes
+        <div class="font-display text-3xl tracking-wider text-white cursor-pointer hover:text-neon-orange transition-colors">CASAMONXIS<span class="text-neon-orange">.</span></div>
+        <a href="#licitar" class="bg-neon-orange text-black font-display tracking-widest px-6 py-2 uppercase hover:bg-white transition-colors duration-300 transform hover:scale-105">
+            Entra a la subhasta
         </a>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen pt-32 pb-20 flex flex-col items-center justify-center relative px-4">
+    <section class="min-h-screen pt-28 pb-10 flex flex-col items-center justify-center relative px-4">
         <div class="text-center z-10 max-w-4xl mx-auto">
-            <h1 class="font-display text-7xl md:text-9xl leading-none tracking-tight uppercase mb-4 text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-600">
-                Sopar <br/><span class="text-neon-orange">Clandestí</span>
+            <p class="font-body text-neon-orange text-sm md:text-lg mb-2 tracking-[0.3em] font-bold uppercase">
+                Drop #001
+            </p>
+            <h1 class="font-display text-7xl md:text-9xl leading-none tracking-tight uppercase mb-4 text-white">
+                Sopar <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">Clandestí</span>
             </h1>
-            <p class="font-body text-gray-400 text-lg md:text-2xl mb-8 uppercase tracking-widest font-bold">
-                No és un restaurant. És casa nostra.
+            <p class="font-body text-gray-400 text-sm md:text-base uppercase tracking-widest mb-2">
+                Fes clic als ingredients per veure el menú
             </p>
         </div>
 
-        <!-- 3D BIKINI ANIMATION -->
-        <div class="bikini-wrapper z-10">
+        <!-- 3D BIKINI ANIMATION (Interactive) -->
+        <div class="bikini-wrapper z-10 relative">
             <div class="bikini-3d">
-                <div class="layer bread-top"></div>
-                <div class="layer cheese"></div>
-                <div class="layer ham"></div>
-                <div class="layer bread-bottom"></div>
+                <div class="layer bread-top" onclick="showIngredient('bread')" title="Pa Brioche"></div>
+                <div class="layer cheese" onclick="showIngredient('cheese')" title="Formatge Trufat"></div>
+                <div class="layer ham" onclick="showIngredient('ham')" title="Pernil Premium"></div>
+                <div class="layer bread-bottom" onclick="showIngredient('bread')" title="Pa Brioche"></div>
             </div>
+        </div>
+        
+        <!-- Ingredient Description Box -->
+        <div id="ingredient-info" class="mt-8 glass-card p-6 max-w-lg mx-auto z-10 text-center min-h-[120px] transition-all duration-300 border-neon-orange">
+            <h3 class="font-display text-2xl mb-2 text-neon-orange">EL BIKINI TRUFAT</h3>
+            <p class="font-body text-gray-300 text-sm">Toca un ingredient del model 3D (pa, formatge o pernil) per descobrir els secrets del plat estrella del Drop #001.</p>
         </div>
         
         <div class="mt-8 z-10 animate-bounce">
@@ -213,7 +219,7 @@
     <!-- MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-content">
-            /// MENÚ SECRET /// NOMÉS 3 PLACES /// EXPERIÈNCIA VIP /// NO HO PUGIS A STORIES /// SENSE NORMES /// CASAMONXIS /// MENÚ SECRET /// NOMÉS 3 PLACES /// EXPERIÈNCIA VIP ///
+            /// DROP #001 /// 1 GUANYADOR /// +2 ACOMPANYANTS /// MENÚ SECRET /// SENSE NORMES /// CASAMONXIS /// DROP #001 /// 1 GUANYADOR /// +2 ACOMPANYANTS /// MENÚ SECRET /// SENSE NORMES /// CASAMONXIS ///
         </div>
     </div>
 
@@ -222,207 +228,233 @@
         <h2 class="font-display text-5xl md:text-7xl mb-16 text-center">LA <span class="text-neon-orange border-b-4 border-neon-orange">XIXA</span></h2>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 hover:border-neon-orange transition-colors duration-300">
-                <i class="fa-solid fa-utensils text-4xl text-neon-orange mb-6"></i>
+            <div class="glass-card p-8 hover:border-neon-orange transition-colors duration-300 group">
+                <i class="fa-solid fa-utensils text-4xl text-gray-500 group-hover:text-neon-orange transition-colors mb-6"></i>
                 <h3 class="font-display text-3xl mb-4">MENÚ SECRET</h3>
-                <p class="font-body text-gray-400">3 plats exclusius dissenyats per nosaltres. No sabràs què sopes fins que t'ho posem al plat. Producte brutal, receptes de barri elevades.</p>
+                <p class="font-body text-gray-400">El plat principal és el Bikini Trufat d'autor, però hi haurà més coses. Producte de barri, recepta elevada. Et donem el sopar fet.</p>
             </div>
             
-            <div class="glass-card p-8 hover:border-neon-yellow transition-colors duration-300">
-                <i class="fa-solid fa-key text-4xl text-neon-yellow mb-6"></i>
-                <h3 class="font-display text-3xl mb-4">NOMÉS 3 PLACES</h3>
-                <p class="font-body text-gray-400">Ni una més ni una menys. Els 3 millors postors guanyen el seu lloc a la taula. Sense amiguismes, puja més fort i entra a la zona VIP.</p>
+            <div class="glass-card p-8 hover:border-white transition-colors duration-300 group">
+                <i class="fa-solid fa-ticket text-4xl text-gray-500 group-hover:text-white transition-colors mb-6"></i>
+                <h3 class="font-display text-3xl mb-4">TAULA PER A 3</h3>
+                <p class="font-body text-gray-400">Només hi ha **UN GUANYADOR**. Qui guanyi la subhasta s'emporta tota la taula i pot portar 2 acompanyants (amics/amigues). Sereu 3 en total.</p>
             </div>
             
-            <div class="glass-card p-8 hover:border-white transition-colors duration-300">
-                <i class="fa-solid fa-house-chimney text-4xl text-white mb-6"></i>
+            <div class="glass-card p-8 hover:border-neon-yellow transition-colors duration-300 group">
+                <i class="fa-solid fa-house-chimney text-4xl text-gray-500 group-hover:text-neon-yellow transition-colors mb-6"></i>
                 <h3 class="font-display text-3xl mb-4">AL NOSTRE PIS</h3>
-                <p class="font-body text-gray-400">L'any passat us donàvem menjar tornant de festa. Aquest any veniu a casa nostra. Bon beure, bona música i una nit per recordar (o no).</p>
+                <p class="font-body text-gray-400">L'any passat veníem menjar a la residència per l'after. Aquest any, veniu a casa nostra. Bon beure, música urbana i zero normes.</p>
             </div>
         </div>
     </section>
 
     <!-- BIDDING SECTION -->
-    <section id="licitar" class="py-24 px-6 relative z-10 bg-black border-t border-gray-800">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-display text-5xl md:text-7xl mb-6 text-center uppercase">Aconsegueix la teva cadira</h2>
-            <p class="text-center text-gray-400 mb-12 font-body text-lg">Inicia sessió amb Google. Fes la teva puja. Els 3 primers s'ho emporten.</p>
+    <section id="licitar" class="py-24 px-6 relative z-10 bg-black border-t border-gray-900">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-7xl mb-4 uppercase">Subhasta Oberta</h2>
+                <p class="text-neon-orange font-bold font-body tracking-widest uppercase mb-2">Preu de sortida: 1€</p>
+                <p class="text-gray-400 font-body text-sm md:text-base max-w-2xl mx-auto">
+                    El sistema és lliure. Posa el teu nom o instagam i la teva puja. <br/>
+                    <span class="text-white">Només el Postor #1 s'emporta la taula per a 3 persones.</span>
+                </p>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Zona de Login i Formulari -->
-                <div class="glass-card p-8 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                
+                <!-- Formulari de Puja -->
+                <div class="glass-card p-8 sticky top-24">
+                    <h3 class="font-display text-3xl mb-6 border-b border-gray-800 pb-4">FES LA TEVA PUJA</h3>
                     
-                    <!-- Estat No Loguejat -->
-                    <div id="login-section" class="text-center py-8">
-                        <h3 class="font-display text-2xl mb-4">IDENTIFICA'T PER LICITAR</h3>
-                        <p class="text-gray-400 text-sm mb-8">Evitem trolls. Necessites un compte de Google real per participar en la subhasta.</p>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">El teu Nom / IG (@)</label>
+                            <input type="text" id="bid-name" placeholder="Ex: @joan.grup" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-white font-body focus:outline-none focus:border-neon-orange transition-colors">
+                        </div>
                         
-                        <button onclick="mockLogin()" class="w-full bg-white text-black font-bold py-4 px-6 rounded hover:bg-gray-200 transition-colors flex items-center justify-center gap-3">
-                            <svg class="w-6 h-6" viewBox="0 0 48 48">
-                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-                            </svg>
-                            Entrar amb Google
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">La teva Oferta (€)</label>
+                            <input type="number" id="bid-amount" min="1" step="1" placeholder="Ex: 15" class="w-full bg-[#111] border border-gray-700 rounded p-4 text-3xl font-display text-white focus:outline-none focus:border-neon-orange transition-colors">
+                        </div>
+                        
+                        <button onclick="submitBid()" id="btn-bid" class="w-full bg-neon-orange text-black font-display text-2xl py-5 uppercase hover:bg-white transition-colors duration-300 mt-4">
+                            Col·locar Puja
                         </button>
-                    </div>
-
-                    <!-- Estat Loguejat (Formulari Pujes) amagat per defecte -->
-                    <div id="bid-section" class="hidden">
-                        <div class="flex items-center gap-3 mb-6 pb-6 border-b border-gray-700">
-                            <div class="w-10 h-10 bg-neon-orange rounded-full flex items-center justify-center font-bold" id="user-initial">U</div>
-                            <div>
-                                <p class="text-sm text-gray-400">Connectat com:</p>
-                                <p class="font-bold text-white" id="user-email">usuari@gmail.com</p>
-                            </div>
-                            <button onclick="mockLogout()" class="ml-auto text-xs text-red-500 hover:text-red-400 underline">Sortir</button>
-                        </div>
-                        
-                        <h3 class="font-display text-2xl mb-4">FES LA TEVA PUJA</h3>
-                        <div class="flex items-end gap-4 mb-4">
-                            <div class="flex-1">
-                                <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">Quantitat (€)</label>
-                                <input type="number" id="bid-amount" min="10" step="1" placeholder="Ex: 25" class="w-full bg-black border-2 border-gray-700 rounded p-4 text-2xl font-display text-white focus:outline-none focus:border-neon-orange transition-colors">
-                            </div>
-                            <button onclick="submitBid()" class="bg-neon-orange text-black font-display text-xl px-8 py-4 uppercase hover:bg-white transition-colors duration-300">
-                                Pujar!
-                            </button>
-                        </div>
-                        <p class="text-xs text-gray-500">*La puja mínima actual per entrar al Top 3 és de <span class="text-white font-bold">16€</span></p>
+                        <p id="bid-error" class="text-red-500 text-sm font-body text-center hidden"></p>
                     </div>
                 </div>
 
                 <!-- Leaderboard -->
                 <div>
-                    <h3 class="font-display text-3xl mb-6 flex items-center gap-3">
-                        <i class="fa-solid fa-trophy text-neon-yellow"></i> 
-                        TOP 3 POSTORS
+                    <h3 class="font-display text-3xl mb-6 flex items-center justify-between">
+                        <span>LEADERBOARD</span>
+                        <span class="text-sm font-body text-gray-500">Live Updates</span>
                     </h3>
-                    <div class="space-y-4" id="leaderboard">
-                        <!-- Rank 1 -->
-                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-neon-yellow">
-                            <div class="flex items-center gap-4">
-                                <span class="font-display text-2xl text-neon-yellow">#1</span>
-                                <span class="font-body font-bold text-white">m***@gmail.com</span>
-                            </div>
-                            <span class="font-display text-3xl text-white">35€</span>
-                        </div>
-                        <!-- Rank 2 -->
-                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-gray-300">
-                            <div class="flex items-center gap-4">
-                                <span class="font-display text-2xl text-gray-300">#2</span>
-                                <span class="font-body font-bold text-white">a***@gmail.com</span>
-                            </div>
-                            <span class="font-display text-3xl text-white">28€</span>
-                        </div>
-                        <!-- Rank 3 -->
-                        <div class="glass-card p-4 flex justify-between items-center border-l-4 border-orange-600">
-                            <div class="flex items-center gap-4">
-                                <span class="font-display text-2xl text-orange-600">#3</span>
-                                <span class="font-body font-bold text-white">j***@gmail.com</span>
-                            </div>
-                            <span class="font-display text-3xl text-white">15€</span>
-                        </div>
+                    
+                    <div class="space-y-4" id="leaderboard-container">
+                        <!-- S'omplirà amb JS -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-8 text-center text-gray-600 font-body text-sm border-t border-gray-900 bg-black">
-        <p>© 2024 CASAMONXIS. L'adreça del pis s'enviarà només als guanyadors.</p>
+    <footer class="py-10 text-center text-gray-600 font-body text-sm border-t border-gray-900 bg-[#050505]">
+        <div class="font-display text-2xl text-gray-800 mb-2">CASAMONXIS</div>
+        <p>© 2026 DROP #001. Tots els drets reservats.</p>
     </footer>
 
-    <!-- LOGIC SCRIPTS -->
     <script>
-        /* 
-        ========================================================================
-        🔥 INSTRUCCIONS FIREBASE (PER QUAN HO PUGIS A GITHUB PAGES) 🔥
-        ========================================================================
-        Perquè el login de Google i les pujes siguin reals, necessites descomentar
-        el codi de sota i afegir el teu Firebase Config.
-        
-        1. Ves a firebase.google.com, crea un projecte gratuït.
-        2. Activa "Authentication" (tria Google com a proveïdor).
-        3. Activa "Firestore Database" (per guardar les pujes).
-        4. Copia la teva "firebaseConfig" i enganxa-la aquí sota.
-        ========================================================================
-        */
-        
-        /* 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "LA_TEVA_API_KEY",
-            authDomain: "el-teu-projecte.firebaseapp.com",
-            projectId: "el-teu-projecte",
-            storageBucket: "el-teu-projecte.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef"
+        // --- 1. LÒGICA DELS INGREDIENTS INTERACTIUS ---
+        const ingredientsData = {
+            'bread': {
+                title: "PA DE MOTLLE BRIOCHE",
+                desc: "Tall gruixut de pa brioix francès, torrat lentament a la planxa amb mantega fins a aconseguir una crosta daurada cruixent i un interior extremadament esponjós."
+            },
+            'cheese': {
+                title: "FORMATGE TRUFAT ARTESANAL",
+                desc: "Formatge premium d'una formatgeria artesana, fos fins a la perfecció amb escates de tòfona negra pura incrustades. Cremós, intens i molt aromàtic."
+            },
+            'ham': {
+                title: "PERNIL DOLÇ PREMIUM",
+                desc: "Pernil cuit de màxima qualitat, de carnisseria local. Tallat ben fi per garantir que es fongui amb la calor del formatge. Pur sabor a carn."
+            }
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
-
-        // Exemple real de Login amb Google:
-        // function realGoogleLogin() {
-        //     signInWithPopup(auth, provider).catch(error => console.error(error));
-        // }
-        */
-
-        // ========================================================================
-        // SIMULACIÓ PER A LA VISTA PRÈVIA (MOCK)
-        // (Això fa que la web sembli que funciona per poder-la provar ara mateix)
-        // ========================================================================
-        
-        const loginSection = document.getElementById('login-section');
-        const bidSection = document.getElementById('bid-section');
-        const userEmailSpan = document.getElementById('user-email');
-        const userInitial = document.getElementById('user-initial');
-
-        function mockLogin() {
-            // Simulem que l'usuari entra amb Google
+        function showIngredient(id) {
+            const infoBox = document.getElementById('ingredient-info');
+            const data = ingredientsData[id];
+            
+            // Animació simple
+            infoBox.style.opacity = '0';
+            infoBox.style.transform = 'translateY(10px)';
+            
             setTimeout(() => {
-                const mockEmail = "amic.festuc@gmail.com";
-                userEmailSpan.innerText = mockEmail;
-                userInitial.innerText = mockEmail.charAt(0).toUpperCase();
-                
-                loginSection.classList.add('hidden');
-                bidSection.classList.remove('hidden');
-            }, 500); // 0.5 segons de "carrega"
+                infoBox.innerHTML = `
+                    <h3 class="font-display text-2xl mb-2 text-white">${data.title}</h3>
+                    <p class="font-body text-gray-300 text-sm">${data.desc}</p>
+                `;
+                infoBox.style.opacity = '1';
+                infoBox.style.transform = 'translateY(0)';
+            }, 200);
         }
 
-        function mockLogout() {
-            loginSection.classList.remove('hidden');
-            bidSection.classList.add('hidden');
-            document.getElementById('bid-amount').value = '';
+
+        // --- 2. LÒGICA DEL SISTEMA DE PUJES (LOCAL / MOCK) ---
+        // Dades inicials per donar ambient
+        let bids = [
+            { name: "@clara_vip", amount: 15 },
+            { name: "Marc T.", amount: 12 },
+            { name: "@el.troll.69", amount: 5 },
+            { name: "Anònim", amount: 1 }
+        ];
+
+        // Carregar pujes des de LocalStorage si n'hi ha
+        const savedBids = localStorage.getItem('casamonxis_bids');
+        if (savedBids) {
+            bids = JSON.parse(savedBids);
+        }
+
+        function renderLeaderboard() {
+            const container = document.getElementById('leaderboard-container');
+            container.innerHTML = '';
+            
+            // Ordenar de major a menor
+            bids.sort((a, b) => b.amount - a.amount);
+            
+            // Mostrar només els top 5 per no fer-ho etern
+            const topBids = bids.slice(0, 5);
+
+            topBids.forEach((bid, index) => {
+                const isWinner = index === 0;
+                
+                // Estils especials pel guanyador
+                const cardClass = isWinner 
+                    ? "glass-card p-5 flex justify-between items-center winner-card relative overflow-hidden" 
+                    : "glass-card p-4 flex justify-between items-center border-l-4 border-gray-700 opacity-80";
+                
+                const rankColor = isWinner ? "text-neon-orange" : "text-gray-500";
+                const rankSize = isWinner ? "text-4xl" : "text-2xl";
+                
+                let winnerBadge = '';
+                if (isWinner) {
+                    winnerBadge = `<div class="absolute -right-6 top-3 bg-neon-orange text-black text-[10px] font-bold uppercase py-1 px-8 rotate-45">GUANYADOR</div>`;
+                }
+
+                const html = `
+                    <div class="${cardClass}">
+                        ${winnerBadge}
+                        <div class="flex items-center gap-4">
+                            <span class="font-display ${rankSize} ${rankColor}">#${index + 1}</span>
+                            <div>
+                                <span class="font-body font-bold text-white block ${isWinner ? 'text-xl' : 'text-md'}">${bid.name}</span>
+                                ${isWinner ? '<span class="text-neon-orange text-xs uppercase tracking-widest">+2 Acompanyants</span>' : ''}
+                            </div>
+                        </div>
+                        <span class="font-display ${isWinner ? 'text-5xl text-white' : 'text-3xl text-gray-400'}">${bid.amount}€</span>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
         }
 
         function submitBid() {
-            const amount = document.getElementById('bid-amount').value;
-            if(!amount || amount <= 15) {
-                alert('La teva puja ha de ser superior a 15€ per superar al Top 3 actual!');
+            const nameInput = document.getElementById('bid-name');
+            const amountInput = document.getElementById('bid-amount');
+            const errorMsg = document.getElementById('bid-error');
+            const btn = document.getElementById('btn-bid');
+            
+            const name = nameInput.value.trim();
+            const amount = parseInt(amountInput.value);
+            
+            // Validacions
+            if (!name) {
+                showError("Si us plau, posa un nom o Instagram.");
+                return;
+            }
+            if (isNaN(amount) || amount < 1) {
+                showError("La puja mínima és de 1€.");
                 return;
             }
             
-            // Simulem que la puja s'ha guardat
-            const btn = document.querySelector('button[onclick="submitBid()"]');
+            // Comprovar si supera l'actual
+            const highestBid = bids.length > 0 ? Math.max(...bids.map(b => b.amount)) : 0;
+            if (amount <= highestBid) {
+                showError(`Has de superar la puja màxima actual (${highestBid}€)!`);
+                return;
+            }
+
+            // Afegir puja
+            bids.push({ name: name, amount: amount });
+            localStorage.setItem('casamonxis_bids', JSON.stringify(bids));
+            
+            // UI Feedback
+            errorMsg.classList.add('hidden');
             const originalText = btn.innerText;
-            btn.innerText = "PUJA FETA!";
-            btn.classList.add('bg-green-500');
+            btn.innerText = "PUJA ACCEPTADA!";
+            btn.classList.add('bg-white', 'text-black');
+            btn.classList.remove('bg-neon-orange');
+            
+            // Buidar inputs i re-renderitzar
+            nameInput.value = '';
+            amountInput.value = '';
+            renderLeaderboard();
             
             setTimeout(() => {
-                alert('Puja registrada! En un entorn real, el Leaderboard s\'actualitzaria ara mateix.');
                 btn.innerText = originalText;
-                btn.classList.remove('bg-green-500');
-                document.getElementById('bid-amount').value = '';
-            }, 1000);
+                btn.classList.add('bg-neon-orange');
+                btn.classList.remove('bg-white');
+            }, 2000);
         }
+
+        function showError(msg) {
+            const errorMsg = document.getElementById('bid-error');
+            errorMsg.innerText = msg;
+            errorMsg.classList.remove('hidden');
+        }
+
+        // Inicialitzar
+        renderLeaderboard();
     </script>
 </body>
 </html>
